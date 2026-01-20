@@ -1,7 +1,8 @@
 # alertas/models.py
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models # pyright: ignore[reportMissingModuleSource]
+from django.contrib.auth.models import User # pyright: ignore[reportMissingModuleSource]
 from contenedores.models import Contenedor
+
 
 class Alerta(models.Model):
     """Modelo para alertas y notificaciones del sistema"""
@@ -23,7 +24,7 @@ class Alerta(models.Model):
     contenedor = models.ForeignKey(
         Contenedor, 
         on_delete=models.CASCADE, 
-        related_name='alertas'
+        related_name='contenedor_alertas'
     )
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     prioridad = models.CharField(max_length=10, choices=PRIORIDAD_CHOICES)
@@ -72,7 +73,7 @@ class Alerta(models.Model):
     @property
     def tiempo_transcurrido(self):
         """Calcula tiempo desde creación"""
-        from django.utils import timezone
+        from django.utils import timezone# pyright: ignore[reportMissingModuleSource]
         if self.resuelta and self.resuelto_en:
             delta = self.resuelto_en - self.creada_en
         else:

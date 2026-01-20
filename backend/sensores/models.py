@@ -1,5 +1,5 @@
 # sensores/models.py
-from django.db import models
+from django.db import models# pyright: ignore[reportMissingModuleSource]
 from contenedores.models import Contenedor
 
 class LecturaSensor(models.Model):

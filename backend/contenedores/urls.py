@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import ContenedorViewSet
 
 router = DefaultRouter()
-router.register(r'', ContenedorViewSet, basename='contenedor')
+router.register(r'contenedores', ContenedorViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,5 +1,5 @@
 # alertas/admin.py
-from django.contrib import admin
+from django.contrib import admin # pyright: ignore[reportMissingModuleSource]
 from .models import Alerta
 
 @admin.register(Alerta)
@@ -37,7 +37,7 @@ class AlertaAdmin(admin.ModelAdmin):
     actions = ['marcar_como_resuelta']
     
     def marcar_como_resuelta(self, request, queryset):
-        from django.utils import timezone
+        from django.utils import timezone  # pyright: ignore[reportMissingModuleSource]
         queryset.update(
             resuelta=True,
             resuelto_por=request.user,
