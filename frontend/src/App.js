@@ -7,8 +7,9 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Mapa from './pages/Mapa';
 import Contenedores from './pages/Contenedores';
-import Alertas from './pages/Alertas';  // ✅ AGREGADO
-
+import Alertas from './pages/AlertasList';  
+import Reportes from './pages/Reportes';
+import Configuracion from './pages/Configuracion';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('access_token');
@@ -47,7 +48,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* ✅ AGREGADO */}
+
           <Route
             path="/alertas"
             element={
@@ -56,6 +57,22 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/reportes"
+            element={
+              <PrivateRoute>
+                <Reportes />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/configuracion"
+            element={
+              <PrivateRoute>
+                <Configuracion />
+              </PrivateRoute>
+            }
+          />   
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </Router>

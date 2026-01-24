@@ -1,4 +1,5 @@
 # alertas/admin.py
+'''
 from django.contrib import admin # pyright: ignore[reportMissingModuleSource]
 from .models import Alerta
 
@@ -45,3 +46,4 @@ class AlertaAdmin(admin.ModelAdmin):
         )
         self.message_user(request, f"{queryset.count()} alerta(s) marcada(s) como resuelta(s).")
     marcar_como_resuelta.short_description = "Marcar seleccionadas como resueltas"
+'''

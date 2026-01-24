@@ -30,7 +30,8 @@ const Sidebar = ({ open, onClose }) => {
     { text: 'Mapa', icon: <Map />, path: '/mapa' },
     { text: 'Alertas', icon: <Notifications />, path: '/alertas' },
     { text: 'Contenedores', icon: <Storage />, path: '/contenedores' },
-    { text: 'Reportes', icon: <BarChart />, path: '/reportes' },
+    { text: 'Reportes', icon: <BarChart />, path: '/Reportes' },
+    { text: 'Configuración', icon: <Settings />, path: '/configuracion' },
   ];
 
   const handleNavigation = (path) => {
@@ -85,16 +86,7 @@ const Sidebar = ({ open, onClose }) => {
           ))}
         </List>
         <Divider />
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleNavigation('/settings')}>
-              <ListItemIcon>
-                <Settings />
-              </ListItemIcon>
-              <ListItemText primary="Configuración" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        
       </Box>
     </Drawer>
   );

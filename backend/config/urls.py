@@ -16,6 +16,7 @@ urlpatterns = [
     
     # APIs de las apps
     path('api/contenedores/', include('contenedores.urls')),
-    path('api/sensores/', include('sensores.urls')),
+    # path('api/sensores/', include('sensores.urls')),  # ← COMENTADA
     path('api/alertas/', include('alertas.urls')),
 ]
+

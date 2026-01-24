@@ -1,5 +1,6 @@
 # alertas/views.py
 from rest_framework import viewsets, status
+'''
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.utils import timezone
@@ -127,3 +128,4 @@ class AlertaViewSet(viewsets.ModelViewSet):
         }
         
         return Response(data)
+'''

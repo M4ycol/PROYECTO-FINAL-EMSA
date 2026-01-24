@@ -1,4 +1,5 @@
 # alertas/models.py
+'''
 from django.db import models # pyright: ignore[reportMissingModuleSource]
 from django.contrib.auth.models import User # pyright: ignore[reportMissingModuleSource]
 from contenedores.models import Contenedor
@@ -84,5 +85,5 @@ class Alerta(models.Model):
             return f"{minutos}m"
         horas = minutos // 60
         minutos_restantes = minutos % 60
-        return f"{horas}h {minutos_restantes}m"
+        return f"{horas}h {minutos_restantes}m" '''
 

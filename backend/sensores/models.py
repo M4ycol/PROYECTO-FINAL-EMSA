@@ -1,4 +1,5 @@
 # sensores/models.py
+'''
 from django.db import models# pyright: ignore[reportMissingModuleSource]
 from contenedores.models import Contenedor
 
@@ -61,4 +62,4 @@ class LecturaSensor(models.Model):
         """Validación antes de guardar"""
         if not (0 <= self.nivel_llenado <= 100):
             raise ValueError("El nivel de llenado debe estar entre 0 y 100")
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)'''

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AppBar,
   Toolbar,
   Typography,
   IconButton,
   Box,
-  Avatar,
   Menu,
   MenuItem,
   Badge,
@@ -17,34 +16,50 @@ import {
   ExitToApp,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 const Navbar = ({ onMenuClick }) => {
   const navigate = useNavigate();
   const username = localStorage.getItem('username') || 'Usuario';
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [alertasNoLeidas, setAlertasNoLeidas] = useState(0);
 
+  // Cargar contador de alertas no leídas
+  useEffect(() => {
+    cargarContadorAlertas();
+    // Actualizar cada 30 segundos
+    const interval = setInterval(cargarContadorAlertas, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const cargarContadorAlertas = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/contenedores/alertas/');
+      if (response.data.success) {
+        const noLeidas = response.data.alertas.filter(a => !a.leida).length;
+        setAlertasNoLeidas(noLeidas);
+      }
+    } catch (error) {
+      console.error('Error al cargar contador de alertas:', error);
+    }
+  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   const handleLogout = () => {
     localStorage.clear();
     navigate('/login');
   };
 
-  // ✅ AGREGADO: Navegar a alertas
   const handleNotifications = () => {
     navigate('/alertas');
   };
-
 
   return (
     <AppBar 
@@ -67,7 +82,6 @@ const Navbar = ({ onMenuClick }) => {
           <MenuIcon />
         </IconButton>
 
-
         {/* Logo y título */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
           <Typography
@@ -85,14 +99,12 @@ const Navbar = ({ onMenuClick }) => {
           </Typography>
         </Box>
 
-
-        {/*  MODIFICADO: Notificaciones con Badge y onClick */}
+        {/* Notificaciones con contador real */}
         <IconButton color="inherit" onClick={handleNotifications}>
-          <Badge badgeContent={0} color="error">
+          <Badge badgeContent={alertasNoLeidas} color="error">
             <Notifications />
           </Badge>
         </IconButton>
-
 
         {/* Menú de usuario */}
         <IconButton onClick={handleMenu} color="inherit">
@@ -115,6 +127,5 @@ const Navbar = ({ onMenuClick }) => {
     </AppBar>
   );
 };
-
 
 export default Navbar;
